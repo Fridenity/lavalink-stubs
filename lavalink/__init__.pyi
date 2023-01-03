@@ -64,7 +64,8 @@ _EventT = t.TypeVar('_EventT', bound=Event)
 _EventT2 = t.TypeVar('_EventT2', bound=Event)
 _EventT3 = t.TypeVar('_EventT3', bound=Event)
 
-HookType = t.Callable[[_EventT], None]
+HookSig = t.Callable[[_EventT], None]
+ListenerSig = t.Callable[[_EventT], None]
 
 def enable_debug_logging(submodule: str = ...) -> None:
     """
@@ -82,18 +83,16 @@ def enable_debug_logging(submodule: str = ...) -> None:
     ...
 
 @t.overload
-def listener() -> t.Callable[[Event], None]: ...
+def listener() -> ListenerSig[Event]: ...
 @t.overload
-def listener(event: _EventT) -> t.Callable[[_EventT], None]: ...
+def listener(event: _EventT) -> ListenerSig[_EventT]: ...
 @t.overload
-def listener(
-    event: _EventT, event2: _EventT2
-) -> t.Callable[[_EventT | _EventT2], None]: ...
+def listener(event: _EventT, event2: _EventT2) -> ListenerSig[_EventT | _EventT2]: ...
 @t.overload
 def listener(
     event: _EventT, event2: _EventT2, event3: _EventT3
-) -> t.Callable[[_EventT | _EventT2 | _EventT3], None]: ...
-def listener(*events: _EventT) -> t.Callable[[_EventT], None]:
+) -> ListenerSig[_EventT | _EventT2 | _EventT3]: ...
+def listener(*events: _EventT) -> ListenerSig[_EventT]:
     """
     Marks this function as an event listener for Lavalink.py.
     This **must** be used on class methods, and you must ensure that you register
@@ -125,10 +124,10 @@ def listener(*events: _EventT) -> t.Callable[[_EventT], None]:
     ...
 
 @t.overload
-def add_event_hook(*hooks: HookType[Event]) -> None: ...
+def add_event_hook(*hooks: HookSig[Event]) -> None: ...
 @t.overload
-def add_event_hook(*hooks: HookType[_EventT], event: _EventT = ...) -> None: ...
-def add_event_hook(*hooks: HookType[_EventT], event: t.Optional[_EventT] = ...) -> None:
+def add_event_hook(*hooks: HookSig[_EventT], event: _EventT = ...) -> None: ...
+def add_event_hook(*hooks: HookSig[_EventT], event: t.Optional[_EventT] = ...) -> None:
     """
     Adds an event hook to be dispatched on an event.
 

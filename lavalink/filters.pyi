@@ -34,7 +34,7 @@ class _NullType:
 _NULL = _NullType()
 
 _T = t.TypeVar('_T')
-NullOr = t.Union[_T, _NullType]
+Optional = t.Union[_T, _NullType]
 BandsType = t.List[t.Tuple[int, float]]
 SerializedFilterDataType = t.Dict[t.Any, t.Any]
 
@@ -84,9 +84,9 @@ class Equalizer(Filter):
     def update(
         self,
         *,
-        bands: NullOr[BandsType] = ...,
-        band: NullOr[int] = ...,
-        gain: NullOr[float] = ...,
+        bands: Optional[BandsType] = ...,
+        band: Optional[int] = ...,
+        gain: Optional[float] = ...,
     ) -> None:
         """
         Modifies the gain of each specified band.
@@ -137,10 +137,10 @@ class Karaoke(Filter):
     def update(
         self,
         *,
-        level: NullOr[float] = ...,
-        mono_level: NullOr[float] = ...,
-        filter_band: NullOr[float] = ...,
-        filter_width: NullOr[float] = ...,
+        level: Optional[float] = ...,
+        mono_level: Optional[float] = ...,
+        filter_band: Optional[float] = ...,
+        filter_width: Optional[float] = ...,
     ) -> None:
         """
         Parameters
@@ -166,9 +166,9 @@ class Timescale(Filter):
     def update(
         self,
         *,
-        speed: NullOr[float] = ...,
-        pitch: NullOr[float] = ...,
-        rate: NullOr[float] = ...,
+        speed: Optional[float] = ...,
+        pitch: Optional[float] = ...,
+        rate: Optional[float] = ...,
     ) -> None:
         """
         Note
@@ -202,8 +202,8 @@ class Tremolo(Filter):
     def update(
         self,
         *,
-        frequency: NullOr[float] = ...,
-        depth: NullOr[float] = ...,
+        frequency: Optional[float] = ...,
+        depth: Optional[float] = ...,
     ) -> None:
         """
         Note
@@ -233,8 +233,8 @@ class Vibrato(Filter):
     def update(
         self,
         *,
-        frequency: NullOr[float] = ...,
-        depth: NullOr[float] = ...,
+        frequency: Optional[float] = ...,
+        depth: Optional[float] = ...,
     ) -> None:
         """
         Note
@@ -319,10 +319,10 @@ class ChannelMix(Filter):
     def update(
         self,
         *,
-        left_to_left: NullOr[float] = ...,
-        left_to_right: NullOr[float] = ...,
-        right_to_left: NullOr[float] = ...,
-        right_to_right: NullOr[float] = ...,
+        left_to_left: Optional[float] = ...,
+        left_to_right: Optional[float] = ...,
+        right_to_left: Optional[float] = ...,
+        right_to_right: Optional[float] = ...,
     ) -> None:
         """
         Note
@@ -360,14 +360,14 @@ class Distortion(Filter):
     def update(
         self,
         *,
-        sin_offset: NullOr[float] = ...,
-        sin_scale: NullOr[float] = ...,
-        cos_offset: NullOr[float] = ...,
-        cos_scale: NullOr[float] = ...,
-        tan_offset: NullOr[float] = ...,
-        tan_scale: NullOr[float] = ...,
-        offset: NullOr[float] = ...,
-        scale: NullOr[float] = ...,
+        sin_offset: Optional[float] = ...,
+        sin_scale: Optional[float] = ...,
+        cos_offset: Optional[float] = ...,
+        cos_scale: Optional[float] = ...,
+        tan_offset: Optional[float] = ...,
+        tan_scale: Optional[float] = ...,
+        offset: Optional[float] = ...,
+        scale: Optional[float] = ...,
     ) -> None:
         """
         Parameters

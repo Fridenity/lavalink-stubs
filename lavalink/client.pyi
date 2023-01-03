@@ -37,8 +37,8 @@ _EventT = t.TypeVar('_EventT', bound=Event)
 _EventT2 = t.TypeVar('_EventT2', bound=Event)
 _EventT3 = t.TypeVar('_EventT3', bound=Event)
 
-HookType = t.Callable[[_EventT], None]
-GenericHookType = HookType[Event]
+HookSig = t.Callable[[_EventT], None]
+GenericHookSig = HookSig[Event]
 TrackType = t.Mapping[str, t.Any]
 RegionType = t.Mapping[str, t.Sequence[str]]
 VoiceUpdateHandlerDataType = t.Mapping[
@@ -90,7 +90,7 @@ class Client:
         regions: RegionType = ...,
         connect_back: bool = ...,
     ) -> None: ...
-    def add_event_hook(self, hook: GenericHookType) -> None:
+    def add_event_hook(self, hook: GenericHookSig) -> None:
         """
         Registers a function to recieve and process Lavalink events.
 
