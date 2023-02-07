@@ -142,7 +142,7 @@ class NodeManager:
         Optional[:class:`str`]
         """
         ...
-    def find_ideal_node(self, region: str = ...) -> None:
+    def find_ideal_node(self, region: str = ...) -> t.Optional[Node]:
         """
         Finds the best (least used) node in the given region, if applicable.
 
